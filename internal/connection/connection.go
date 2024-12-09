@@ -10,15 +10,20 @@ import (
 )
 
 func InitializeAPI(cfg config.Config) (*server.ServerHTTP, error) {
-	database, err := database.ConnectDatabase(cfg)
+	db, err := database.ConnectDatabase(cfg)
 	if err != nil {
 		return nil, err
 	}
-	vendorRepository := repo.NewVendorRepo(database)
+
+	defer func() {
+		database.Disconnect()
+	}()
+
+	vendorRepository := repo.NewVendorRepo(db)
 	vendorService := service.NewVendorService(vendorRepository)
 	vendorController := controller.NewVendorController(vendorService)
 
-	adminRepository := repo.NewAdminRepo(database)
+	adminRepository := repo.NewAdminRepo(db)
 	adminService := service.NewAdminService(adminRepository)
 	adminController := controller.NewAdminController(adminService)
 
