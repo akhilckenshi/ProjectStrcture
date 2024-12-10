@@ -146,8 +146,15 @@ docker build -t smeexclusive .
 
 To start the container, use the following command:
 
+Using a .env File
+
 ```bash
-docker run -d -p 3000:3000 --name smeexclusive-container smeexclusive
+docker run -p 3000:3000 smeexclusive
+```
+Using System Environment Variables
+
+```bash
+docker run -e DB_URI -e DB_NAME -e JWT_SECRET -e PORT -p 3000:3000 smeexclusive
 ```
 
 5.3. Stop the Running Container

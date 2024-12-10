@@ -15,6 +15,7 @@ import (
 var mongoClient *mongo.Client
 
 func ConnectDatabase(c config.Config) (*mongo.Database, error) {
+	fmt.Println("name", c.DBName)
 	ctx := context.TODO()
 	mongoConn := options.Client().ApplyURI(c.DBUrl)
 	mongoClient, err := mongo.Connect(ctx, mongoConn)

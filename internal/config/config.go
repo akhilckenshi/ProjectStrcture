@@ -1,6 +1,8 @@
 package config
 
 import (
+	"log"
+
 	"github.com/spf13/viper"
 )
 
@@ -17,16 +19,22 @@ var envs = []string{
 
 func LoadConfig() (Config, error) {
 	var config Config
-	viper.AddConfigPath("./")
+
+	// Load the .env file if it exists
 	viper.SetConfigFile(".env")
-	viper.ReadInConfig()
+	if err := viper.ReadInConfig(); err != nil {
+		log.Printf("Warning: Could not read .env file: %v\n", err)
+	}
+
 	for _, env := range envs {
 		if err := viper.BindEnv(env); err != nil {
 			return config, err
 		}
 	}
+
 	if err := viper.Unmarshal(&config); err != nil {
 		return config, err
 	}
+
 	return config, nil
 }
