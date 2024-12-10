@@ -3,7 +3,7 @@ package controller
 import (
 	"exclusive-sample/internal/models"
 	"exclusive-sample/internal/service"
-	"exclusive-sample/internal/utils/responses"
+	"exclusive-sample/utils/responses"
 	"net/http"
 	"time"
 

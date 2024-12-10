@@ -98,8 +98,7 @@ These commands will create go.sum file, which manage dependencies for the projec
 ```bash
 DB_URI="your_db_uri"
 DB_NAME="your_db_name"
-ENVIRONMENT="your_environment"
-HOST="your_host"
+JWT_SECRET="your_jwt_secret"
 PORT="your_port"
 ```
     

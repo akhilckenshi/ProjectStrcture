@@ -5,14 +5,14 @@ import (
 )
 
 type Config struct {
-	DBUrl  string `mapstructure:"DB_URI"`
-	DBName string `mapstructure:"DB_NAME"`
-	Host   string `mapstructure:"HOST"`
-	Port   string `mapstructure:"PORT"`
+	DBUrl     string `mapstructure:"DB_URI"`
+	DBName    string `mapstructure:"DB_NAME"`
+	JWTSecret string `mapstructure:"JWT_SECRET"`
+	Port      string `mapstructure:"PORT"`
 }
 
 var envs = []string{
-	"DB_URI", "DB_NAME", "HOST", "PORT",
+	"DB_URI", "DB_NAME", "JWT_SECRET", "PORT",
 }
 
 func LoadConfig() (Config, error) {
